@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <canvas id="my_canvas"></canvas>
+  </body>
+  <script type="text/javascript">
+  onImageLoad = function() {
+  console.log("image was loaded");
+  // context.drawImage(img, 192, 192);
+};
+var canvas = null;
+var context = null;
+var frameRate = 1000 / 30;
+var frame = 0;
+var assets = ["butterfly.png", "monster1.png", "monster2.gif"];
+var frames = [];
+setup = function() {
+  canvas = document.getElementById("my_canvas");
+  context = canvas.getContext("2d");
+  canvas.width = 1200;
+  canvas.height = 720;
+
+  for (var i = 0; i < assets.length; i++) {
+    frames.push(new Image());
+    frames[i].onload = onImageLoad;
+    frames[i].src = assets[i];
+  }
+  setInterval(animate, frameRate);
+};
+
+var animate = function() {
+  context.clearRect(0, 0, canvas.width, canvas.length);
+  context.drawImage(frames[frame], 192, 192);
+  frame = (frame + 1) % frames.length;
+};
+
+setup();
+</script>
+</html>
