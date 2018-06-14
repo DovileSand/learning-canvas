@@ -1,43 +1,62 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <canvas id="my_canvas"></canvas>
-  </body>
-  <script type="text/javascript">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+
+<body>
+  <canvas id="my_canvas"></canvas>
+  <form name="contact" method="POST" netlify>
+    <p>
+      <label>Name it</br><input type="text" name="name" /></label>
+    </p>
+    <p>
+      <label>Price it</br><input type="email" name="email" /></label>
+    </p>
+      <label>Define it</br></label>
+      <input type="radio" value="leader" name="definition">Leader</input>
+      <input type="radio" value="lamp" name="definition">Lamp</input>
+      <input type="radio" value="sausage" name="definition">Sausage</input>
+      <input type="radio" value="shape" name="definition">Shape</input>
+    <p>
+      <button type="submit">Send</button>
+    </p>
+  </form>
+</body>
+<script type="text/javascript">
   onImageLoad = function() {
-  console.log("image was loaded");
-  // context.drawImage(img, 192, 192);
-};
-var canvas = null;
-var context = null;
-var frameRate = 1000 / 30;
-var frame = 0;
-var assets = ["butterfly.png", "sun.png", "monster2.gif"];
-var frames = [];
-setup = function() {
-  canvas = document.getElementById("my_canvas");
-  context = canvas.getContext("2d");
-  canvas.width = 1200;
-  canvas.height = 720;
+    console.log("image was loaded");
+    // context.drawImage(img, 192, 192);
+  };
+  var canvas = null;
+  var context = null;
+  var frameRate = 1000 / 30;
+  var frame = 0;
+  var assets = ["butterfly.png", "sun.png", "monster2.gif"];
+  var frames = [];
+  setup = function() {
+    canvas = document.getElementById("my_canvas");
+    context = canvas.getContext("2d");
+    canvas.width = 1200;
+    canvas.height = 720;
 
-  for (var i = 0; i < assets.length; i++) {
-    frames.push(new Image());
-    frames[i].onload = onImageLoad;
-    frames[i].src = assets[i];
-  }
-  setInterval(animate, frameRate);
-};
+    for (var i = 0; i < assets.length; i++) {
+      frames.push(new Image());
+      frames[i].onload = onImageLoad;
+      frames[i].src = assets[i];
+    }
+    setInterval(animate, frameRate);
+  };
 
-var animate = function() {
-  context.clearRect(0, 0, canvas.width, canvas.length);
-  context.drawImage(frames[frame], 192, 192);
-  frame = (frame + 1) % frames.length;
-};
+  var animate = function() {
+    context.clearRect(0, 0, canvas.width, canvas.length);
+    context.drawImage(frames[frame], 192, 192);
+    frame = (frame + 1) % frames.length;
+  };
 
-setup();
+  setup();
 </script>
+
 </html>
